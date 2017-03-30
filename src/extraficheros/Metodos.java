@@ -8,6 +8,7 @@ package extraficheros;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.logging.Level;
@@ -18,7 +19,7 @@ import javax.swing.JOptionPane;
  *
  * @author jquesadaabeijon
  */
-public class Metodos {
+public class Metodos implements Serializable {
     File f;
     PrintWriter p = null;
     Scanner sc;
@@ -39,16 +40,50 @@ public class Metodos {
             f =  new File(notas);
             p =  new PrintWriter(f);
             p.println(new Alumnos(pedirNombre(), pedirNota()));
-//            p.println("Juan" + 5);
-//            p.println("Pedro" + 7);
-//            p.println("Marta" + 7);
-//            p.println("Jorge" + 3);
-//            p.println("Arturo" + 2);
         } catch (FileNotFoundException ex) {
             ex.getMessage();
         } finally {
             p.close();
         }
+    }
+    
+    public void leer(String notas){
+        
+        try {
+            f = new File(notas);
+            sc = new Scanner(f);
+            while (sc.hasNextInt()) {
+                if (sc.nextInt() >= 5)
+                    escribir("aprobados.dat");
+                else
+                    escribir("suspensos.dat");
+            }
+        } catch (FileNotFoundException ex) {
+            ex.getMessage();
+        } finally {
+            sc.close();
+        }
+    }
+    
+    public void fichtoArray(String aprob){
+        try {
+            alum = new ArrayList<>();
+            sc =  new Scanner(new File(aprob));
+            while (sc.hasNextLine()) {
+                String[] aux = sc.nextLine().split(",");
+                Alumnos al = new Alumnos(aux[0], Integer.parseInt(aux[1]));
+                alum.add(al);
+            }
+        } catch (FileNotFoundException ex) {
+            ex.getMessage();
+        } finally {
+            sc.close();
+        }
+    }
+    
+    public void visualizar() {
+        for(int i=0;i<alum.size(); i++)
+            System.out.println(alum.get(i));
     }
     
     
