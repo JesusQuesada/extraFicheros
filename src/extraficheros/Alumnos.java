@@ -5,11 +5,14 @@
  */
 package extraficheros;
 
+import java.io.Serializable;
+import java.util.Objects;
+
 /**
  *
  * @author jquesadaabeijon
  */
-public class Alumnos {
+public class Alumnos implements Comparable{
     String nombre;
     int notas;
 
@@ -41,6 +44,14 @@ public class Alumnos {
     public String toString() {
         return "Alumnos{" + "nombre=" + nombre + ", notas=" + notas + '}';
     }
+
+    @Override
+    public int compareTo(Object o) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    
+    
     
     
 }

@@ -8,18 +8,16 @@ package extraficheros;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
-import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author jquesadaabeijon
  */
-public class Metodos implements Serializable {
+public class Metodos {
     File f;
     PrintWriter p = null;
     Scanner sc;
@@ -82,8 +80,9 @@ public class Metodos implements Serializable {
     }
     
     public void visualizar() {
-        for(int i=0;i<alum.size(); i++)
-            System.out.println(alum.get(i));
+        //for(int i=0;i<alum.size(); i++)
+            Collections.sort(alum);
+            System.out.println(alum.toString());
     }
     
     
